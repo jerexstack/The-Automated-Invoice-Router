@@ -1,22 +1,31 @@
-def process_transaction(raw_reference, amount):
-    if raw_reference is None:
-        raise ValueError("Missing Client Reference data!")
+import json
 
-    clean_text = raw_reference.strip().replace(".", "").upper()
-    noise_makers = ["-", "_", ".", "#", "/", ")", "("]
+# Load the dynamic routing rulefrom the configuration gateway at boot time
+with open("gateway_config.json", "r") as config_file:
+    config = json.load(config_file)
 
-    for char in noise_makers:
-        clean_text = clean_text.replace(char, "")
+# Extract rules into operational variabes
+RULES = config["billing_rules"]
 
-    if amount >= 1000000:
-        category = "ENTERPRISE PRIORITIZED"
+def process_transaction(client_reference, billing_amount):
+    if client_reference is None:
+        raise Exception("Missing Client Reference data!")
+    
+    clean_reference = client_reference.strip().replace("--", "")
+
+    if billing_amount >= RULES["premium_threshold"]:
+        target_vault = RULES["premium_route"]
     else:
-        category = "STANDARD ACCOUNTS"
-    return clean_text, category
+        target_vault = RULES["standard_route"]
+
+    return clean_reference, target_vault
 
 if __name__ == "__main__":
-    print("Testing Automation Router engine")
-    text1, cat1 = process_transaction(None, 1000000)
-    print(f"Cleaned Text: {text1} | Routing target: {cat1}")
+    print("Testing Code")
+    text1, text2 = process_transaction(" Jerex ", 10000)
+    print(f"cleansed data: {text1}")
+    print(f"Routing target: Routing funds to {text2}...")
+    
+    
 
 
