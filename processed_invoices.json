@@ -1,23 +1,23 @@
 [
     {
         "invoice_id": 901,
-        "client_name": "ACME CORP",
+        "client_name": "Acme Corp",
         "amount": 450000,
-        "tier": "STANDARD ACCOUNTS",
-        "processed_at": "2026-54-06/14/26 07:54:02"
+        "tier": "PREMIUM ACCOUNTS",
+        "processed_at": "2026-14-06/14/26 18:14:43"
     },
     {
         "invoice_id": 902,
-        "client_name": "GLOBAL TECH LTD",
+        "client_name": "Global Tech Ltd",
         "amount": 1200000,
-        "tier": "ENTERPRISE PRIORITIZED",
-        "processed_at": "2026-54-06/14/26 07:54:03"
+        "tier": "PREMIUM ACCOUNTS",
+        "processed_at": "2026-14-06/14/26 18:14:44"
     },
     {
         "invoice_id": 904,
-        "client_name": "ALPHA OMEGA",
+        "client_name": "Alpha Omega",
         "amount": 80000,
         "tier": "STANDARD ACCOUNTS",
-        "processed_at": "2026-54-06/14/26 07:54:05"
+        "processed_at": "2026-14-06/14/26 18:14:46"
     }
 ]

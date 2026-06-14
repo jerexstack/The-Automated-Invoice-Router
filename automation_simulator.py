@@ -1,6 +1,17 @@
 import time
 import json
+import logging  # Import standard logging library
 import invoice_engine
+
+# Configure the Prodauction logging engine
+logging.basicConfig(
+     level=logging.INFO,
+     format="%(asctime)s [%(levelname)s] %(message)s",
+     handlers=[
+          logging.FileHandler("production_pipeline.log"), # writes to a file
+          logging.StreamHandler()                         # Still prints to terminal
+     ]
+)
 
 incoming_invoices = [
     {"invoice_id": 901, "client": "  Acme Corp--", "billing_amount": 450000},
@@ -39,8 +50,8 @@ for invoice in incoming_invoices:
         successful_records.append(success_payload)
 
     except Exception as error_message:
-         print(f"CRITICAL ERROR' Failed to process Item ID: {invoice['invoice_id']}")
-         print(f"Reason: {error_message}")
+         # Log errors with anexplict WARNING serverity level
+         logging.warning(f"Validation faliure on Item ID: {invoice['invoice_id']} | Reason: {error_message}")
 
          failed_payload = {
              "invoice_id": invoice["invoice_id"],
@@ -50,7 +61,7 @@ for invoice in incoming_invoices:
          }
          failed_records.append(failed_payload)
 
-print("[SYSTEM] Writing data records to permanent JSON storage....")
+logging.info("Synchronised data records to permanent JSON storage file...")
 
 with open("processed_invoices.json", "w") as success_file:
         json.dump(successful_records, success_file, indent=4)
