@@ -1,0 +1,23 @@
+[
+    {
+        "invoice_id": 901,
+        "client_name": "ACME CORP",
+        "amount": 450000,
+        "tier": "STANDARD ACCOUNTS",
+        "processed_at": "2026-54-06/14/26 07:54:02"
+    },
+    {
+        "invoice_id": 902,
+        "client_name": "GLOBAL TECH LTD",
+        "amount": 1200000,
+        "tier": "ENTERPRISE PRIORITIZED",
+        "processed_at": "2026-54-06/14/26 07:54:03"
+    },
+    {
+        "invoice_id": 904,
+        "client_name": "ALPHA OMEGA",
+        "amount": 80000,
+        "tier": "STANDARD ACCOUNTS",
+        "processed_at": "2026-54-06/14/26 07:54:05"
+    }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "invoice_id": 903,
+        "attempted_amount": 350000,
+        "error_log": "Missing Client Reference data!",
+        "failed_at": "2026-54-06/14/26 07:54:04"
+    }
+]

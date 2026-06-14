@@ -1,4 +1,5 @@
 import time
+import json
 import invoice_engine
 
 incoming_invoices = [
@@ -7,6 +8,9 @@ incoming_invoices = [
     {"invoice_id": 903, "client": None, "billing_amount": 350000},
     {"invoice_id": 904, "client": "  Alpha Omega  ", "billing_amount": 80000}
 ]
+
+successful_records =  []
+failed_records = []
 
 print("Starting Live Automation Simulator...")
 start_clock = time.time()
@@ -25,13 +29,38 @@ for invoice in incoming_invoices:
         print(f"Clean data: {clean_ref}")
         print(f"Routing target: sending funds to ->{routing_target}")
 
+        success_payload = {
+            "invoice_id": invoice["invoice_id"],
+            "client_name": clean_ref,
+            "amount": deposit,
+            "tier": routing_target,
+            "processed_at": time.strftime("%Y-%M-%D %H:%M:%S")
+        }
+        successful_records.append(success_payload)
+
     except Exception as error_message:
          print(f"CRITICAL ERROR' Failed to process Item ID: {invoice['invoice_id']}")
          print(f"Reason: {error_message}")
 
-    end_clock = time.time()
-    latency = end_clock - start_clock
-    print(f"Process took {latency} seconds!")
+         failed_payload = {
+             "invoice_id": invoice["invoice_id"],
+             "attempted_amount": invoice["billing_amount"],
+             "error_log": str(error_message),
+             "failed_at": time.strftime("%Y-%M-%D %H:%M:%S")
+         }
+         failed_records.append(failed_payload)
+
+print("[SYSTEM] Writing data records to permanent JSON storage....")
+
+with open("processed_invoices.json", "w") as success_file:
+        json.dump(successful_records, success_file, indent=4)
+
+with open("failed_invoices.json", "w") as failure_file:
+     json.dump(failed_records, failure_file, indent=4)
+
+end_clock = time.time()
+latency = end_clock - start_clock
+print(f"Process took {latency} seconds!")
 
 
 
