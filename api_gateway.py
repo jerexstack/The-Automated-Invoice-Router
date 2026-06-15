@@ -16,7 +16,7 @@ def fetch_remote_invoices(target_url):
     Connects to an external REST API, handles network exceptions,
     and returns parsed JSON data streams safely.
     """
-    logging.info(f"Initiating connection profie to remote cluster: {target_url}")
+    logging.info(f"Initiating connection profile to remote cluster: {target_url}")
 
     try:
         # Perform the live HTTP GET reuest with a 5 second network timeout window
