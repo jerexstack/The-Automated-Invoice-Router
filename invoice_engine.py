@@ -11,7 +11,7 @@ def process_transaction(client_reference, billing_amount):
     if client_reference is None:
         raise Exception("Missing Client Reference data!")
     
-    clean_reference = client_reference.strip().replace("--", "")
+    clean_reference = client_reference.strip().replace("--", "").upper()
 
     if billing_amount >= RULES["premium_threshold"]:
         target_vault = RULES["premium_route"]
