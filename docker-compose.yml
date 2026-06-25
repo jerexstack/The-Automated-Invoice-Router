@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web-server:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+
+  invoice-database:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=zapier_ledger
+      - POSTGRES_USER=master_j
+      - POSTGRES_PASSWORD=secure_password123
+    ports:
+      - "5432:5432"

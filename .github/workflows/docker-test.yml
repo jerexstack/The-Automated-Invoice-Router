@@ -1,0 +1,15 @@
+name: Docker Build Validation
+
+on: [push]
+
+jobs:
+  validate-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code from Master J Repository
+        uses: actions/checkout@v3
+
+      - name: Initialize Docker Build Engine
+        run: |
+          docker build -t invoice-subsystem:v1 .
+          echo "DOCKER RUNTIME VERIFIED: Build compiled successfully in the cloud!"
