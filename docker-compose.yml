@@ -1,20 +1,22 @@
 version: '3.8'
 
 services:
-  web-server:
-    build: .
+  ingress_engine:
+    build: ./ingress
+    # The server inside the container LISTENS on 0.0.0.0:8000
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
     ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
+      - "8000:8000"  # Exposes port 8000 on your machine to port 8000 inside the container
     environment:
-      - FLASK_ENV=development
+      - APP_ENV=production
+      - HOST_ADDRESS=0.0.0.0
 
-  invoice-database:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_DB=zapier_ledger
-      - POSTGRES_USER=master_j
-      - POSTGRES_PASSWORD=secure_password123
+  api_gateway:
+    build: ./gateway
     ports:
-      - "5432:5432"
+      - "8001:8001"
+    environment:
+      # CRUCIAL: The client must point to the specific destination address
+      - INGRESS_URL=http://ingress_engine:8000/v1/invoices
+    depends_on:
+      - ingress_engine

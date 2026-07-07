@@ -128,3 +128,19 @@
 2026-06-20 16:28:30,662 [INFO]  * Restarting with stat
 2026-06-20 16:28:31,184 [WARNING]  * Debugger is active!
 2026-06-20 16:28:31,203 [INFO]  * Debugger PIN: 123-991-674
+2026-06-27 07:06:23,267 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-27 07:06:23,268 [INFO] [33mPress CTRL+C to quit[0m
+2026-06-27 07:06:23,273 [INFO]  * Restarting with stat
+2026-06-27 07:06:24,274 [WARNING]  * Debugger is active!
+2026-06-27 07:06:24,317 [INFO]  * Debugger PIN: 391-540-746
+2026-06-27 07:07:22,294 [INFO] Network Layer Event: Inbound HTTP POST request detected.
+2026-06-27 07:07:22,296 [INFO] Processing Remote Transaction - ID: INV-2026-X99
+2026-06-27 07:07:22,302 [INFO] Transaction Cleared: Route to -> STANDARD ACCOUNTS
+2026-06-27 07:07:22,304 [INFO] 127.0.0.1 - - [27/Jun/2026 07:07:22] "POST /api/v1/invoice HTTP/1.1" 200 -
+2026-06-29 18:12:29,904 [INFO] Network Layer Event: Inbound HTTP POST request detected.
+2026-06-29 18:12:29,906 [INFO] Processing Remote Transaction - ID: INV-2026-X99
+2026-06-29 18:12:29,909 [INFO] Transaction Cleared: Route to -> STANDARD ACCOUNTS
+2026-07-05 06:06:10,515 [INFO] Network Layer Event: Inbound HTTP POST request detected.
+2026-07-05 06:06:10,516 [INFO] Processing Remote Transaction - ID: INV-2026-X99
+2026-07-05 06:06:10,519 [INFO] Transaction Cleared: Route to -> STANDARD ACCOUNTS

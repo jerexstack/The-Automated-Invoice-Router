@@ -1,20 +1,20 @@
-# Step 1: Grab a pre-built, lightweiht image of python 3.11
-FROM python:3.11-slim 
+# 1. Use an official, lightweight Python runtime blueprint
+FROM python:3.11-slim
 
-# Step 2: Create a secure operational directory inside the container
+# 2. Set the internal working directory inside the isolated container
 WORKDIR /app
 
-#Step 3: Copy your dependecies list into the box
+# 3. Copy just the dependency manifest first (Optimizes Docker build caching)
 COPY requirements.txt .
 
-# Step 4: Run the installer inside the box to secure your packages
+# 4. Install production dependencies cleanly without saving cache junk
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Step 5: Copy all of your local source files into the container
+# 5. Copy the rest of your local application code into the container image
 COPY . .
 
-# Step 6: Expose Port 5000 so the container can hear outside network traffic
-EXPOSE 5000
+# 6. Open up the container's internal firewall port to match our gateway
+EXPOSE 8000
 
-# Step 7: Automatically fire up the backend server on boot
-CMD ["python", "app.py"]
+# 7. The execution engine command that fires up Uvicorn when the container boots
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
